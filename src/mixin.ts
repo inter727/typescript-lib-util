@@ -1,3 +1,8 @@
+import { Compute } from "./compute";
+import { Omit } from "./omit";
+
+export type Merge<T extends object, U extends object> = Compute<T & Omit<U, keyof T>>
+
 interface IObject {
   [key: string]: any
 }
