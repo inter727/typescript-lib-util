@@ -1,7 +1,9 @@
 import { Compute } from "./compute";
 import { Omit } from "./omit";
+import {Overwrite} from "./overwrite";
 
-export type Merge<T extends object, U extends object> = Compute<T & Omit<U, keyof T>>
+export type Mixin<T extends object, U extends object> = T & Omit<U, keyof T>
+export type Merge<T extends object, U extends object> = Overwrite<T, U> & Omit<U, keyof T>
 
 interface IObject {
   [key: string]: any
@@ -17,4 +19,22 @@ export default function mixin <T extends IObject, U extends IObject> (f: T, s: U
     (<U>result)[k] = s[k]
   }
   return result
+}
+
+interface A {
+  a: string,
+  b: number
+}
+
+interface B {
+  b: string,
+  c: boolean
+}
+
+type C = Merge<A, B>
+
+let c: C = {
+  a: '111',
+  b: 'string',
+  c: true
 }
