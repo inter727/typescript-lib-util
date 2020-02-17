@@ -1,1 +1,0 @@
-export type ElementOf<T> = T extends Array<infer P> ? P : T

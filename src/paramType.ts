@@ -1,1 +1,0 @@
-export type ParamType<T> = T extends (param: infer P) => any ? P : T
